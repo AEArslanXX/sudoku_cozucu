@@ -13,6 +13,32 @@ board = [
     [0, 0, 0, 0, 8, 0, 0, 7, 9]
 ]
 
+def find_box_index(row,column):
+    if column  > 9 or row > 9 or row <1 or column < 1:
+        return False
+    elif column  <= 3 and row <= 3:
+        return 1
+    elif (column  >=4 and column <=6) and (row <=3):
+        return 2
+    elif (column  >=7 and column  <=9) and (row <=3):
+        return 3
+    elif (column  >=1 and column  <=3) and (row >= 4 and row <= 6):
+        return 4
+    elif (column  >=4 and column  <=6) and (row >= 4 and row <= 6):
+        return 5
+    elif (column  >=7 and column  <=9) and (row >= 4 and row <= 6):
+        return 6
+    elif (column  >=1 and column  <=3) and (row >= 4 and row <= 6):
+        return 7
+    elif (column  >=4 and column  <=6) and (row >= 7 and row <= 9):
+        return 8
+    elif (column  >=7 and column  <=9) and (row >= 7 and row <= 9):
+        return 9
+
+
+
+
+
 #satır , sütun ve boxlara ayırma
 
 columns_list = []
@@ -113,6 +139,13 @@ def find_number_boxs():
 
 #kontrol edici
 
-
-def controlling():
-    pass
+def is_suitable(row,column,number):
+    if number in rows(row):
+        return "satır"
+    if number in columns(column):
+        return "sütun"
+    box_index = find_box_index(row,column)
+    if number in boxs(box_index):
+        return "box"
+print(is_suitable(6,8,7))
+    
