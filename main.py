@@ -113,3 +113,6 @@ def find_number_boxs():
 
 #kontrol edici
 
+
+def controlling():
+    pass
