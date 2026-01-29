@@ -1,13 +1,17 @@
+import os
 #tahta ve sayılar
 numbers = [1,2,3,4,5,6,7,8,9]
+
+#dosya okuma ve tahtayı hazırlama
 def prepare_board():
     with open("files/input.txt", "r", encoding="utf-8") as file:
         content = []
         for line in file:
-            line = line.strip().strip("[] ,-")
+            line = line.strip()
             if line:
-                digits = [int(d) for d in line]
-                content.append(digits)
+                digits = [int(d) for d in line if d.isdigit()]
+                if len(digits) > 0:
+                    content.append(digits)
         return content
 
 board = prepare_board()
@@ -160,8 +164,3 @@ board_str = ""
 for i in board:
     print(str(i))
     i = str(i)
-    with open("files/output.txt","a",encoding="utf-8") as f:
-        f.write(f"{i}\n")
-
-
-
