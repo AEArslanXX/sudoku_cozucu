@@ -153,10 +153,10 @@ def explorer():
                 for c in range(1,10):
                     if is_suitable(a+1 , b+1 , c):
                         board[a][b] = c
+    explorer()
+    if counter == 0:
+        return False
     print(counter)
-            
-explorer()
-explorer()
 explorer()
 for i in board:
     print(f"{i}")
