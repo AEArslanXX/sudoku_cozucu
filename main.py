@@ -154,9 +154,5 @@ def explorer():
                     if is_suitable(a+1 , b+1 , c):
                         board[a][b] = c
     print(counter)
-            
-explorer()
-explorer()
-explorer()
 for i in board:
     print(f"{i}")
