@@ -1,18 +1,16 @@
 #tahta ve sayılar
-
 numbers = [1,2,3,4,5,6,7,8,9]
-board = [
-    [8, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 3, 6, 0, 0, 0, 0, 0],
-    [0, 7, 0, 0, 9, 0, 2, 0, 0],
-    [0, 5, 0, 0, 0, 7, 0, 0, 0],
-    [0, 0, 0, 0, 4, 5, 7, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 3, 0],
-    [0, 0, 1, 0, 0, 0, 0, 6, 8],
-    [0, 0, 8, 5, 0, 0, 0, 1, 0],
-    [0, 9, 0, 0, 0, 0, 4, 0, 0]
+def prepare_board():
+    with open("files/input.txt", "r", encoding="utf-8") as file:
+        content = []
+        for line in file:
+            line = line.strip().strip("[] ,-")
+            if line:
+                digits = [int(d) for d in line]
+                content.append(digits)
+        return content
 
-]
+board = prepare_board()
 
 #satır , sütun ve boxlara ayırma
 
@@ -158,5 +156,12 @@ def explorer():
     return True
             
 explorer()
+board_str = ""
 for i in board:
-    print(i)
+    print(str(i))
+    i = str(i)
+    with open("files/output.txt","a",encoding="utf-8") as f:
+        f.write(f"{i}\n")
+
+
+
