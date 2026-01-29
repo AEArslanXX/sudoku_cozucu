@@ -2,15 +2,16 @@
 
 numbers = [1,2,3,4,5,6,7,8,9]
 board = [
-    [4, 0, 0, 5, 0, 0, 7, 0, 0],
-    [0, 0, 0, 0, 0, 2, 0, 8, 0],
-    [0, 0, 0, 0, 0, 7, 9, 0, 0],
-    [0, 3, 6, 0, 4, 0, 0, 0, 2],
-    [0, 0, 0, 2, 0, 0, 0, 0, 0],
-    [0, 8, 0, 0, 3, 0, 0, 0, 6],
-    [0, 0, 0, 9, 0, 8, 5, 0, 0],
-    [1, 0, 0, 0, 0, 5, 8, 0, 0],
-    [3, 0, 0, 6, 0, 0, 0, 0, 1]
+    [8, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 3, 6, 0, 0, 0, 0, 0],
+    [0, 7, 0, 0, 9, 0, 2, 0, 0],
+    [0, 5, 0, 0, 0, 7, 0, 0, 0],
+    [0, 0, 0, 0, 4, 5, 7, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 3, 0],
+    [0, 0, 1, 0, 0, 0, 0, 6, 8],
+    [0, 0, 8, 5, 0, 0, 0, 1, 0],
+    [0, 9, 0, 0, 0, 0, 4, 0, 0]
+
 ]
 
 #satır , sütun ve boxlara ayırma
@@ -143,15 +144,19 @@ def is_suitable(row,column,number):
     if number in boxs(box_index):
         return False
     return True
-
 def explorer():
-    counter = 0
     for a in range(0, 9):
         for b in range(0, 9):
             if board[a][b] == 0:
                 for c in range(1,10):
                     if is_suitable(a+1 , b+1 , c):
                         board[a][b] = c
-explorer()           
+                        if explorer():
+                            return True
+                        board[a][b] = 0
+                return False
+    return True
+            
+explorer()
 for i in board:
-    print(f"{i}")
+    print(i)
