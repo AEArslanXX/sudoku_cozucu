@@ -2,42 +2,16 @@
 
 numbers = [1,2,3,4,5,6,7,8,9]
 board = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    [4, 0, 0, 5, 0, 0, 7, 0, 0],
+    [0, 0, 0, 0, 0, 2, 0, 8, 0],
+    [0, 0, 0, 0, 0, 7, 9, 0, 0],
+    [0, 3, 6, 0, 4, 0, 0, 0, 2],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0],
+    [0, 8, 0, 0, 3, 0, 0, 0, 6],
+    [0, 0, 0, 9, 0, 8, 5, 0, 0],
+    [1, 0, 0, 0, 0, 5, 8, 0, 0],
+    [3, 0, 0, 6, 0, 0, 0, 0, 1]
 ]
-
-def find_box_index(row,column):
-    if column  > 9 or row > 9 or row <1 or column < 1:
-        return False
-    elif column  <= 3 and row <= 3:
-        return 1
-    elif (column  >=4 and column <=6) and (row <=3):
-        return 2
-    elif (column  >=7 and column  <=9) and (row <=3):
-        return 3
-    elif (column  >=1 and column  <=3) and (row >= 4 and row <= 6):
-        return 4
-    elif (column  >=4 and column  <=6) and (row >= 4 and row <= 6):
-        return 5
-    elif (column  >=7 and column  <=9) and (row >= 4 and row <= 6):
-        return 6
-    elif (column  >=1 and column  <=3) and (row >= 7 and row <= 9):
-        return 7
-    elif (column  >=4 and column  <=6) and (row >= 7 and row <= 9):
-        return 8
-    elif (column  >=7 and column  <=9) and (row >= 7 and row <= 9):
-        return 9
-
-
-
-
 
 #satır , sütun ve boxlara ayırma
 
@@ -151,7 +125,7 @@ def find_box_index(row,column):
         return 5
     elif (column  >=7 and column  <=9) and (row >= 4 and row <= 6):
         return 6
-    elif (column  >=1 and column  <=3) and (row >= 4 and row <= 6):
+    elif (column  >=1 and column  <=3) and (row >= 7 and row <= 9):
         return 7
     elif (column  >=4 and column  <=6) and (row >= 7 and row <= 9):
         return 8
@@ -168,14 +142,21 @@ def is_suitable(row,column,number):
     box_index = find_box_index(row,column)
     if number in boxs(box_index):
         return False
-    return True 
-
-    
+    return True
 
 def explorer():
+    counter = 0
     for a in range(0, 9):
         for b in range(0, 9):
             if board[a][b] == 0:
+                counter+=1
                 for c in range(1,10):
-                    print(is_suitable(a+1,b+1,c))
+                    if is_suitable(a+1 , b+1 , c):
+                        board[a][b] = c
+    print(counter)
+            
 explorer()
+explorer()
+explorer()
+for i in board:
+    print(f"{i}")
